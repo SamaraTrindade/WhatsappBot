@@ -81,64 +81,6 @@ namespace WhatsappBot
         }
          */
 
-        public DialogResult UltimaPessoa()
-        {
-            return MessageBox.Show(LastInfo, "Ultima pessoa da lista",
-                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        private void Quantidade()
-        {
-            String NomeArquivo = FileDialog.SafeFileName.Replace(".xlsx", ".txt");
-            String Path = systemPath + @"\Relatorio\Quantidade_" + NomeArquivo;
-            if (!File.Exists(Path))
-            {
-
-            }
-        }
-        private void Ultimo(String nome, String Telefone)
-        {
-            String NomeArquivo = FileDialog.SafeFileName.Replace("xlsx", "txt");
-            String Path = systemPath + @"\UltimoPlanilha\Ultimo_" + NomeArquivo;
-
-            using (StreamWriter sw = File.CreateText(Path))
-                sw.WriteLine($"Nome\t\tTelefone\n{nome}\t\t{Telefone}");
-
-        }
-        private void Relatorio(String Prefixo, String nome, String DDD, String Telefone)
-        {
-
-            String NomeArquivo = FileDialog.SafeFileName.Replace(".xlsx", ".txt");
-            String Path = systemPath + @"\Relatorio\NaoEnviada_" + NomeArquivo;
-
-
-            if (!File.Exists(Path))
-            {
-                using (StreamWriter sw = File.CreateText(Path))
-                {
-                    sw.WriteLine("Prefixo\tNome\tDDD\tTelefone");
-                }
-            }
-            if (File.Exists(Path))
-            {
-                using (StreamWriter sw = File.AppendText(Path))
-                {
-                    sw.WriteLine($"{Prefixo}\t{nome}\t{DDD}\t{Telefone}");
-                }
-            }
-
-        }
-
-
-
-
-        public void IsPicturePress(OpenFileDialog picture)
-        {
-            MyPicture = picture;
-
-
-
-        }
-
         /// <summary>
         /// Inicia o bot
         /// </summary>
@@ -211,11 +153,7 @@ namespace WhatsappBot
 
                 //Serviço Manual
                 GoToManualService();
-
-
-                char[] TelefoneTemp = new char[19];
-                char[] DDDTemp = new char[2];
-
+                
                 foreach (var info in infos)
                 {
                     SendMessage(info.Prefixo, info.Nome, info.DDD, info.Telefone, MyMessage.Text);
