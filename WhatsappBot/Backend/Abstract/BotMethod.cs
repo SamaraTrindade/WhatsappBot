@@ -188,11 +188,6 @@ namespace WhatsappBot.Backend.Abstract
             ConfirmClose.Click();
         }
         
-
-        private static void CloseWarning()
-        {
-
-        }
         protected void SendMessage(String Prefixo, String Nome, String DDD, String Telefone, String Mensagem) // Disparar envio
         {
             ImplicitWait();
